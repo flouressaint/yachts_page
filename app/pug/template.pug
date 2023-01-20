@@ -1,0 +1,16 @@
+include meta
+include nav
+
+block variables
+
++createMeta(title,style)
+body
+    header
+        block header
+    +createNav(title)
+    article
+        block article
+    aside
+        block aside
+    footer
+        block footer

@@ -1,0 +1,8 @@
+
+mixin createNav(title)
+    nav.menu
+        each key, value in { 'Яхты' : 'index' , 'Список яхт': 'list'}
+            if value == title
+                a.active(href= key + ".html")= value
+            else
+                a(href= key + ".html")= value
