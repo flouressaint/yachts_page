@@ -6,124 +6,551 @@ block variables
     - var style ='list.css'
 
 block article
-    section
+    section#section
         .det
             details
-                summary График
+                summary  График 
+                form
+                    table
+                    tr
+                        th Значениe по оси OX
+                        th Результат
+                    tr
+                        br
+                        td
+                        input(type='radio' name='ox' value='0')
+                        | Страна
+                        br
+                        input(type='radio' name='ox' value='1')
+                        | Год постройки
+                        br
+                        td
+                        input(type='radio' name='oy' value='0')
+                        | Количество яхт
+                        br
+                        input(type='radio' name='oy' value='1')
+                        | Максимальная скорость
+                        br
+                    input(type='button' value='Построить')
+                    p Здесь будет график
             details
-                summary Фильтр
+                summary  Фильтр
+                form
+                    p
+                    label(for='name') Название:
+                    input(type='text' name='name')
+                    p
+                    label(for='location') Локация:
+                    input(type='text' name='location')
+                    p
+                    label(for='length') Длина:
+                    input(type='text' name='length')
+                    p
+                    label(for='width') Ширина:
+                    input(type='text' name='width')
+                    p
+                    label(for='speedFrom') Максимальная скорость:
+                    |   от 
+                    input(type='text' name='speedFrom')
+                    |   до
+                    input(type='text' name='speedFo')
+                    p
+                    label(for='yearFrom') Год постройки:
+                    |   от
+                    input(type='text' name='yearFrom')
+                    |   до
+                    input(type='text' name='yearFo')
+                    p
+                    input(type='button', value='Найти', onclick='filterTable(\
+                    this.form.name.value,\
+                    this.form.location.value,\
+                    this.form.length.value,\
+                    this.form.width.value,\
+                    this.form.speedFrom.value,\
+                    this.form.speedFo.value,\
+                    this.form.yearFrom.value,\
+                    this.form.yearFo.value)')
             details
                 summary Сортировка
-        table(border="1")
-            tr
+                form
+                    p
+                    | Первый уровень:
+                    select#first(onchange='hideElement(this.value,\
+                    this.form.sortSecond.value,\
+                    this.form.sortThird.value,\
+                    1)')
+                        option(value='0') Нет
+                        option(value='1') Название
+                        option(value='2') Локация
+                        option(value='3') Длина
+                        option(value='4') Ширина
+                        option(value='6') Максимальная скорость
+                        option(value='5') Год
+                    |             по убыванию?
+                    input#descFirst(type='checkbox')
+                    p
+                    | Второй уровень:
+                    select#second(onchange='hideElement(this.value,\
+                    this.form.sortSecond.value,\
+                    this.form.sortThird.value,\
+                    2)')
+                        option(value='0') Нет
+                        option(value='1') Название
+                        option(value='2') Локация
+                        option(value='3') Длина
+                        option(value='4') Ширина
+                        option(value='6') Максимальная скорость
+                        option(value='5') Год
+                    |             по убыванию?
+                    input#descSecond(type='checkbox')
+                    p
+                    | Третий уровень:
+                    select#third(onchange='hideElement(this.value,\
+                    this.form.sortSecond.value,\
+                    this.form.sortThird.value,\
+                    3)')
+                        option(value='0') Нет
+                        option(value='1') Название
+                        option(value='2') Локация
+                        option(value='3') Длина
+                        option(value='4') Ширина
+                        option(value='6') Максимальная скорость
+                        option(value='5') Год
+                    |             по убыванию?
+                    input#descThird(type='checkbox')
+                    p
+                    input(type='button' value='Сортировать' checked='' onclick='sortSettings()')
+
+        table#table(border='1')
+            thead
                 th Название
                 th Локация
                 th Длина
                 th Ширина
                 th Максимальная скорость
                 th Год постройки
-            tr
-                td CBI NAVI 3300 BALOO
-                td Италия
-                td 33
-                td 7.2
-                td 21
-                td 2004
-            tr
-                td PRINCESS V78
-                td Англия
-                td 24.48
-                td 5.76
-                td 39
-                td 2022
-            tr
-                td Princess 88MY
-                td Турция
-                td 26.82
-                td 6.3
-                td 14
-                td 2018
-            tr
-                td PRINCESS Y95
-                td Англия
-                td 29.1
-                td 6.77
-                td 24
-                td 2022
-            tr
-                td Princess 85MY (025)
-                td Турция
-                td 25.93
-                td 6.3
-                td 26
-                td 2010
-            tr
+            tbody
+                tr
                 td PRINCESS X80
                 td Англия
                 td 25.18
                 td 6.06
-                td 29-31
+                td 29
                 td 2022
-            tr
-                td NAZCA
-                td  Россия
-                td 23.88
-                td 5.82
-                td 20
-                td 2021
-            tr
-                td BALU
-                td Россия
-                td 49
-                td 8,5
-                td 18
-                td 2015
-            tr
-                td Princess V85-S (040)
-                td Турция
-                td 25.91
-                td 6.27
-                td 17
-                td 2011
-            tr
-                td PRINCESS Y78
-                td Англия
-                td 24.67
-                td 5.76
-                td 36
-                td 2022
-            tr
-                td  PRINCESS S78
+                tr
+                td PRINCESS S78
                 td Плимут
                 td 24.66
                 td 5.76
-                td 24
+                td 19
                 td 2020
-            tr
-                td PRINCESS Y85
-                td Англия
-                td 26.2
-                td 6.3
-                td 32
-                td 2022
-            tr
-                td PRINCESS Y72
-                td Англия
-                td 22.8
-                td 5.45
-                td 34
-                td 2022
-            tr
-                td Princess 85MY (012)
-                td Россия
-                td 25.93
-                td 6.3
-                td 21
-                td 2009
-            tr
+                tr
                 td PRINCESS X95
                 td Англия
                 td 29.11
                 td 6.77
                 td 26
                 td 2022
+                tr
+                td PRINCESS Y85
+                td Англия
+                td 26.2
+                td 6.3
+                td 32
+                td 2022
+                tr
+                td PRINCESS Y95
+                td Англия
+                td 29.1
+                td 6.77
+                td 24
+                td 2022
+                tr
+                td Tecnomar for Lamborghini 63
+                td Италия
+                td 19.2
+                td 5.49
+                td 60
+                td 2022
+                tr
+                td PRINCESS V78
+                td Англия
+                td 24.48
+                td 5.76
+                td 39
+                td 2022
+                tr
+                td Princess 85MY (012) 
+                td Россия
+                td 25.93
+                td 6.3
+                td 19
+                td 2009
+                tr
+                td PRINCESS V65
+                td Англия
+                td 20.32
+                td 5.08
+                td 38
+                td 2022
+                tr
+                td Princess V85-S (040)
+                td Турция
+                td 25.91
+                td 6.27
+                td 19
+                td 2011
+                tr
+                td PRINCESS Y72
+                td Англия
+                td 22.8
+                td 5.45
+                td 34
+                td 2022
+                tr
+                td NAZCA
+                td Россия
+                td 23.88
+                td 5.82
+                td 19
+                td 2021
+                tr
+                td Princess 88MY
+                td Турция
+                td 26.82
+                td 6.3
+                td 19
+                td 2018
+                tr
+                td PRINCESS Y78
+                td Англия
+                td 24.67
+                td 5.76
+                td 36
+                td 2022
+                tr
+                td PRINCESS S66
+                td Англия
+                td 20.32
+                td 5.08
+                td 38
+                td 2022
+                tr
+                td Yamaha 242 XE
+                td Россия
+                td 7.32
+                td 2.54
+                td 87
+                td 2017
+                tr
+                td JEANNEAU 855 MERRY FISHER
+                td Россия
+                td 7.95
+                td 2.99
+                td 43
+                td 2013
+                tr
+                td BENETEAU GRAN TURISMO 36
+                td Франция
+                td 11.56
+                td 3.48
+                td 19
+                td 2022
+                tr
+                td SUNSEEKER CAMARGUE 44
+                td Россия
+                td 14.14
+                td 4.2
+                td 19
+                td 2001
+                tr
+                td Strider 13
+                td Россия
+                td 13.43
+                td 3.98
+                td 52
+                td 2023
+                tr
+                td CARVER 43.5
+                td Россия
+                td 13.23
+                td 4.04
+                td 19
+                td 2001
+                tr
+                td BENETEAU SWIFT TRAWLER 35
+                td Франция
+                td 11.29
+                td 3.96
+                td 19
+                td 2022
+                tr
+                td PRINCESS 40 (076)
+                td Россия
+                td 13
+                td 4.5
+                td 19
+                td 2002
+                tr
+                td ELAN POWER 42
+                td Россия
+                td 12.8
+                td 3.9
+                td 19
+                td 2006
+                tr
+                td FAIRLINE TARGA 38
+                td Россия
+                td 12.1
+                td 3.64
+                td 19
+                td 2008
+                tr
+                td BENETEAU GRAN TURISMO 32
+                td Франция
+                td 9.95
+                td 3.32
+                td 19
+                td 2022
+                tr
+                td Strider 11
+                td Россия
+                td 11.51
+                td 3.79
+                td 48
+                td 2023
+                tr
+                td Strider 800
+                td Россия
+                td 8.09
+                td 3.1
+                td 48
+                td 2023
+                tr
+                td Strider 10
+                td Россия
+                td 9.32
+                td 3.44
+                td 54
+                td 2023
+                tr
+                td JEANNEAU 34 Prestige
+                td Россия
+                td 19
+                td 19
+                td 55
+                td 2005
+                tr
+                td Princess R35
+                td Монако
+                td 10.89
+                td 3.27
+                td 45
+                td 2021
+                tr
+                td PRINCESS S78
+                td Плимут
+                td 24.66
+                td 5.76
+                td 19
+                td 2020
+                tr
+                td PRINCESS V78
+                td Англия
+                td 24.48
+                td 5.76
+                td 39
+                td 2022
+                tr
+                td Princess 88MY
+                td Турция
+                td 26.82
+                td 6.3
+                td 19
+                td 2018
+                tr
+                td PRINCESS X95
+                td Англия
+                td 29.11
+                td 6.77
+                td 26
+                td 2022
+                tr
+                td PRINCESS Y85
+                td Англия
+                td 26.2
+                td 6.3
+                td 32
+                td 2022
+                tr
+                td Princess 85MY (012) 
+                td Россия
+                td 25.93
+                td 6.3
+                td 19
+                td 2009
+                tr
+                td XO EXPLR 10S
+                td Россия
+                td 8.6
+                td 2.5
+                td 19
+                td 2022
+                tr
+                td CBI NAVI 3300 BALOO
+                td Италия
+                td 33
+                td 7.2
+                td 19
+                td 2004
+                tr
+                td PRINCESS X80
+                td Англия
+                td 25.18
+                td 6.06
+                td 29
+                td 2022
+                tr
+                td PRINCESS Y78
+                td Англия
+                td 24.67
+                td 5.76
+                td 36
+                td 2022
+                tr
+                td PRINCESS Y95
+                td Англия
+                td 29.1
+                td 6.77
+                td 24
+                td 2022
+                tr
+                td VAN DER HEIJDEN DYNAMIC 1700
+                td Нидерланды
+                td 17.30
+                td 5.35
+                td 19
+                td 2019
+                tr
+                td PRINCESS Y72
+                td Англия
+                td 22.8
+                td 5.45
+                td 34
+                td 2022
+                tr
+                td NAZCA
+                td Россия
+                td 23.88
+                td 5.82
+                td 19
+                td 2021
+                tr
+                td CBI NAVI 3300 BALOO
+                td Италия
+                td 33
+                td 7.2
+                td 19
+                td 2004
+                tr
+                td BALU
+                td Россия
+                td 49
+                td 8.5
+                td 19
+                td 2015
+                tr
+                td PRINCESS Y72
+                td Англия
+                td 22.8
+                td 5.45
+                td 34
+                td 2022
+                tr
+                td NAZCA
+                td Россия
+                td 23.88
+                td 5.82
+                td 19
+                td 2021
+                tr
+                td PRINCESS S78
+                td Плимут
+                td 24.66
+                td 5.76
+                td 19
+                td 2020
+                tr
+                td Princess 85MY (012) 
+                td Россия
+                td 25.93
+                td 6.3
+                td 19
+                td 2009
+                tr
+                td Princess V85-S (040)
+                td Турция
+                td 25.91
+                td 6.27
+                td 19
+                td 2011
+                tr
+                td PRINCESS X95
+                td Англия
+                td 29.11
+                td 6.77
+                td 26
+                td 2022
+                tr
+                td PRINCESS Y95
+                td Англия
+                td 29.1
+                td 6.77
+                td 24
+                td 2022
+                tr
+                td Princess 88MY
+                td Турция
+                td 26.82
+                td 6.3
+                td 19
+                td 2018
+                tr
+                td PRINCESS Y85
+                td Англия
+                td 26.2
+                td 6.3
+                td 32
+                td 2022
+                tr
+                td PRINCESS Y78
+                td Англия
+                td 24.67
+                td 5.76
+                td 36
+                td 2022
+                tr
+                td PRINCESS V78
+                td Англия
+                td 24.48
+                td 5.76
+                td 39
+                td 2022
+                tr
+                td Princess 85MY (025)
+                td Турция
+                td 25.93
+                td 6.3
+                td 19
+                td 2010
+                tr
+                td PRINCESS X80
+                td Англия
+                td 25.18
+                td 6.06
+                td 29
+                td 2022
+        aside
+        footer
+        script(src='js/filterTable.js')
+        script(src='js/sortTable.js')

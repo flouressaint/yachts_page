@@ -14,63 +14,100 @@ function getDataTable() {
     return result;
 }
 
-function isCompareOrder(arrCompare, first, second) {
-    for (let k = 0; k < arrCompare.length; k += 2) {
-        let f = doCompare(first[arrCompare[k]], second[arrCompare[k]], arrCompare[k + 1]);
+function dCompare(a, b, sortOrder){
+    if (sortOrder) {
+        if (a > b) {
+            return -1;
+        } else if (a == b) {
+            return 0;
+        } else {
+            return 1;
+        }
+    } else {
+        if (a > b) {
+            return 1;
+        } else if (a == b) {
+            return 0;
+        } else {
+            return -1;
+        }
+    }
+}
+
+function isLess(settings, first, second) {
+    for (let k = 0; k < settings.length; k += 2) {
+        let f = dCompare(first[settings[k]], second[settings[k]], settings[k + 1]);
         if (f === 1) {
             return true;
         } else if (f === 0) {
-            // переходим к сравнению следующего поля
+            // переходим к сравнению следоеващееполя
         } else {
             return false;
         }
     }
 }
 
-function compareTable(a, b, i, sortOrder){
-    if (sortOrder) {
-        if (a[i] > b[i]) {
-            return -1;
-        } else if (a[i] == b[i]) {
-            return 0;
-        } else {
-            return 1;
-        }
-    } else {
-        if (a[i] > b[i]) {
-            return 1;
-        } else if (a[i] == b[i]) {
-            return 0;
-        } else {
-            return -1;
-        }
-    }
+function change(k, p, tableData) {
+    let w = tableData[k];
+    tableData[k] = tableData[p];
+    tableData[p] = w;
 }
 
-
-function sortTable(settings) {
-    let tableData = getDataTable();
-    for (let i = 0; i < settings.length; i += 2) {
-        tableData.sort((a, b) => compareTable(a, b, settings[i], settings[i + 1]));
+function QuickSort(settings, data) {
+    //let tableData = getDataTable();
+    //console.log(data.length);
+    if (data.length <= 1) {
+        return data;
     }
-    return tableData;
-}
-
-// ?
-function printTable(tableData) {
-    let table = document.getElementById('table');
-    let rows = table.querySelector('tbody').querySelectorAll('tr');
-    for (let i = 0; i < rows.length; i++) {
-        let cells = rows[i].cells;
-        if (tableData[i] === undefined) {
-            rows[i].parentElement.removeChild(rows[i]);
-            
+ 
+    const pivot = data[data.length - 1];
+    const leftList = [];
+    const rightList = [];
+ 
+    for (let i = 0; i < data.length - 1; i++) {
+        if (!isLess(settings, data[i], pivot)) {
+            leftList.push(data[i]);
         } else {
-            for (let j = 0; j < cells.length; j++) {
-                cells[j].innerHTML = tableData[i][j];
-            }
+            rightList.push(data[i])
         }
     }
+ 
+    return [...QuickSort(settings, leftList), pivot, ...QuickSort(settings, rightList)];
+ }
+
+function printTable(data) {
+        let tbl = document.getElementById("table");
+        let section = document.getElementById("section");
+        if(tbl) tbl.parentNode.removeChild(tbl);
+        tbl = document.createElement("table");
+
+        let tblHead = document.createElement("thead");
+        let arr = ["Название", "Локация", "Длина", "Ширина", "Максимальная скорость", "Год постройки"]
+        for (let i = 0; i < 6; i++) {
+            let row = document.createElement("th");
+            let cellText = document.createTextNode(`${arr[i]}`);
+            row.appendChild(cellText);
+            tblHead.appendChild(row);
+        }
+        tbl.appendChild(tblHead);
+        
+        let tblBody = document.createElement("tbody");
+        for (let i = 0; i < data.length; i++) {
+          let row = document.createElement("tr");
+          for (let j = 0; j < data[i].length; j++) {
+            let cell = document.createElement("td");
+            let cellText = document.createTextNode(`${data[i][j]}`);
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+          }
+      
+          tblBody.appendChild(row);
+        }
+      
+        tbl.appendChild(tblBody);
+        section.appendChild(tbl);
+        tbl.setAttribute("id", "table");
+        tbl.setAttribute("border", "1");
 }
 
 function sortSettings() {
@@ -107,5 +144,8 @@ function sortSettings() {
         settings.push(+third - 1);
         settings.push(thirdCheck);
     }
-    printTable(sortTable(settings));
+    let data = getDataTable();
+    data = QuickSort(settings, data);
+    //console.log(data);
+    printTable(data); // settings example: 0,false, -1,false, -1,false
 }
