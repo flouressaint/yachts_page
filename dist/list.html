@@ -64,7 +64,7 @@
           <summary>Сортировка</summary>
           <form>
             <p></p>Первый уровень:
-            <select id="first" onchange="hideElement(this.value,                    this.form.sortSecond.value,                    this.form.sortThird.value,                    1)">
+            <select id="first">
               <option value="0">Нет</option>
               <option value="1">Название</option>
               <option value="2">Локация</option>
@@ -75,7 +75,7 @@
             </select>            по убыванию?
             <input id="descFirst" type="checkbox"/>
             <p></p>Второй уровень:
-            <select id="second" onchange="hideElement(this.value,                    this.form.sortSecond.value,                    this.form.sortThird.value,                    2)">
+            <select id="second">
               <option value="0">Нет</option>
               <option value="1">Название</option>
               <option value="2">Локация</option>
@@ -86,7 +86,7 @@
             </select>            по убыванию?
             <input id="descSecond" type="checkbox"/>
             <p></p>Третий уровень:
-            <select id="third" onchange="hideElement(this.value,                    this.form.sortSecond.value,                    this.form.sortThird.value,                    3)">
+            <select id="third">
               <option value="0">Нет</option>
               <option value="1">Название</option>
               <option value="2">Локация</option>
@@ -110,7 +110,7 @@
           <th>Максимальная скорость</th>
           <th>Год постройки</th>
         </thead>
-        <tbody>
+        <tbody id="tbody">
           <tr></tr>
           <td>PRINCESS X80</td>
           <td>Англия</td>

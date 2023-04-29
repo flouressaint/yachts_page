@@ -82,13 +82,15 @@ function printTable(data) {
         tbl = document.createElement("table");
 
         let tblHead = document.createElement("thead");
+        let tblHeadtr = document.createElement("tr");
         let arr = ["Название", "Локация", "Длина", "Ширина", "Максимальная скорость", "Год постройки"]
         for (let i = 0; i < 6; i++) {
             let row = document.createElement("th");
             let cellText = document.createTextNode(`${arr[i]}`);
             row.appendChild(cellText);
-            tblHead.appendChild(row);
+            tblHeadtr.appendChild(row);
         }
+        tblHead.appendChild(tblHeadtr);
         tbl.appendChild(tblHead);
         
         let tblBody = document.createElement("tbody");

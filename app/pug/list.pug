@@ -75,10 +75,7 @@ block article
                 form
                     p
                     | Первый уровень:
-                    select#first(onchange='hideElement(this.value,\
-                    this.form.sortSecond.value,\
-                    this.form.sortThird.value,\
-                    1)')
+                    select#first()
                         option(value='0') Нет
                         option(value='1') Название
                         option(value='2') Локация
@@ -90,10 +87,7 @@ block article
                     input#descFirst(type='checkbox')
                     p
                     | Второй уровень:
-                    select#second(onchange='hideElement(this.value,\
-                    this.form.sortSecond.value,\
-                    this.form.sortThird.value,\
-                    2)')
+                    select#second()
                         option(value='0') Нет
                         option(value='1') Название
                         option(value='2') Локация
@@ -105,10 +99,7 @@ block article
                     input#descSecond(type='checkbox')
                     p
                     | Третий уровень:
-                    select#third(onchange='hideElement(this.value,\
-                    this.form.sortSecond.value,\
-                    this.form.sortThird.value,\
-                    3)')
+                    select#third()
                         option(value='0') Нет
                         option(value='1') Название
                         option(value='2') Локация
