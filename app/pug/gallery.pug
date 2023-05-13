@@ -1,0 +1,19 @@
+extends template
+include imgs_row
+
+block variables
+    - var title ='Галерея'
+    - var style ='gallery.css'
+
+block article
+    section#section
+        .grid
+            img(src='img/princess-x95.jpg')
+            img(src='img/tecnomar63.jpg')
+            img(src='img/montecarlo65.jpg')
+            img(src='img/trawler48.jpg')
+            img(src='img/sunseeker73.jpg')
+
+    aside
+    footer
+    script(src='js/gallery.js')
