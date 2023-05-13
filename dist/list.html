@@ -5,6 +5,7 @@
 </head>
 <link rel="stylesheet" href="css/main.css"/>
 <link rel="stylesheet" href="css/list.css"/>
+<script src="http://d3js.org/d3.v7.min.js"></script>
 <body>
   <header>
   </header>
@@ -19,18 +20,22 @@
             <table></table>
             <tr>
               <th>Значениe по оси OX</th>
-              <th>Результат</th>
             </tr>
             <tr><br/>
               <td></td>
-              <input type="radio" name="ox" value="0"/>Страна<br/>
-              <input type="radio" name="ox" value="1"/>Год постройки<br/>
-              <td></td>
-              <input type="radio" name="oy" value="0"/>Количество яхт<br/>
-              <input type="radio" name="oy" value="1"/>Максимальная скорость<br/>
+              <input type="radio" name="ox" id="oxPlace" value="0" checked="checked"/>Локация<br/>
+              <input type="radio" name="ox" id="oxYear" value="1"/>Год постройки<br/>
             </tr>
-            <input type="button" value="Построить"/>
-            <p>Здесь будет график</p>
+            <tr> 
+              <th>Значение по оси OY</th>
+            </tr>
+            <tr><br/>
+              <td></td>
+              <input type="radio" name="oy" id="oyLen" value="0" checked="checked"/>Длина<br/>
+              <input type="radio" name="oy" id="oySpeed" value="1"/>Максимальная скорость<br/>
+            </tr>
+            <input type="button" value="Построить" onclick="drawGraph()"/>
+            <svg></svg>
           </form>
         </details>
         <details>
@@ -537,6 +542,7 @@
       <footer></footer>
       <script src="js/filterTable.js"></script>
       <script src="js/sortTable.js"></script>
+      <script src="js/graph.js"></script>
     </section>
   </article>
   <aside>

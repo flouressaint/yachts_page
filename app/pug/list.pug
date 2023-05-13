@@ -14,25 +14,28 @@ block article
                     table
                     tr
                         th Значениe по оси OX
-                        th Результат
                     tr
                         br
                         td
-                        input(type='radio' name='ox' value='0')
-                        | Страна
+                        input(type='radio' name='ox' id='oxPlace' value='0' checked)
+                        | Локация
                         br
-                        input(type='radio' name='ox' value='1')
+                        input(type='radio' name='ox' id='oxYear' value='1')
                         | Год постройки
                         br
-                        td
-                        input(type='radio' name='oy' value='0')
-                        | Количество яхт
+                    tr 
+                        th Значение по оси OY
+                    tr
                         br
-                        input(type='radio' name='oy' value='1')
+                        td
+                        input(type='radio' name='oy' id='oyLen' value='0' checked)
+                        | Длина
+                        br
+                        input(type='radio' name='oy' id='oySpeed' value='1')
                         | Максимальная скорость
                         br
-                    input(type='button' value='Построить')
-                    p Здесь будет график
+                    input(type='button' value='Построить' onclick="drawGraph()")
+                    svg
             details
                 summary  Фильтр
                 form
@@ -545,3 +548,4 @@ block article
         footer
         script(src='js/filterTable.js')
         script(src='js/sortTable.js')
+        script(src='js/graph.js')
